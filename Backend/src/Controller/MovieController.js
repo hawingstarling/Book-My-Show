@@ -10,7 +10,7 @@ const MovieController = {
   // [GET]
   GetAllMovie: async function (req, res) {
     try {
-      let { data } = await Movie.find();
+      let data = await Movie.find();
       console.log(data);
       res.status(200).json({
         page: 1,
@@ -22,8 +22,6 @@ const MovieController = {
     }
   },
   GetLastTestUpdateToDB: async function (req, res) {
-    // console.log(req.query.page);
-
     const TotalPage = parseInt(req.query.page ? req.query.page : 1);
     try {
       await Movie.deleteMany({});
@@ -33,14 +31,32 @@ const MovieController = {
       res.status(404).json(MSG("Fail To Fetching Lastest ", 404));
     }
   },
-  GetUpComming: async function (req, res) {
+  GetUpCommingUpdateToDB: async function (req, res) {
     const TotalPage = parseInt(req.query.page ? req.query.page : 1);
     try {
-      await Movie.deleteMany({});
+      await Movie.deleteMany({UpComming:true});
       await ConvertMovie_UpCommingByPage(TotalPage);
       res.status(200).json(MSG("Update Successfully", 200));
     } catch (e) {
       res.status(404).json(MSG("Fail To Fetching Lastest ", 404));
+    }
+  },
+  GetNowPlaying: async function (req, res) {
+    try {
+      let data = await Movie.find({ UpComming: false });
+      res.status(200).json(MSG("Successfully", 200, data));
+    } catch (e) {
+      console.log(e);
+      res.status(200).json(MSG("Fetching data error", 404));
+    }
+  },
+  GetUpComming: async function (req, res) {
+    try {
+      let data = await Movie.find({ UpComming: true });
+      res.status(200).json(MSG("Successfully", 200, data));
+    } catch (e) {
+      console.log(e);
+      res.status(200).json(MSG("Fetching data error", 404));
     }
   },
   AddNewVideo: async function (req, res) {},

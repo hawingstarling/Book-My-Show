@@ -1,7 +1,8 @@
-const MSG = function(msg,status){
+const MSG = function(msg,status,data){
     return {
         msg,
-        status
+        status,
+        data
     }
 }
 

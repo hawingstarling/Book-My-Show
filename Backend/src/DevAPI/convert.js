@@ -50,7 +50,7 @@ async function ConvertMovie_UpCommingByPage(PageTotal) {
     // console.log(results);
     for (let j = 0; j < results.length; j++) {
       let movie = new Movie({
-        UpComming: false,
+        UpComming: true,
         id: results[j].id,
         title: results[j].title,
         release_date: results[j].release_date,

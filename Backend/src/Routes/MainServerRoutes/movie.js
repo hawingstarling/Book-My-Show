@@ -6,8 +6,8 @@ const router = express.Router();
 // [GET]
 router.get("/search", MovieController.SearchVideo);
 router.get("/all", MovieController.GetAllMovie);
-router.get("/fetchLastest", VerifyAdmin, MovieController.GetLastTestUpdateToDB);
-router.get("/upcomming", VerifyAdmin, MovieController.GetUpComming);
+router.get("/fetchLastest", MovieController.GetLastTestUpdateToDB);
+router.get("/upcomming", MovieController.GetUpComming);
 
 // [DELETE]
 router.delete("/delete", VerifyAdmin, MovieController.DeleteVideo);

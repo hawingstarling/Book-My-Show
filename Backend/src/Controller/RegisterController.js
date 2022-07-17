@@ -4,6 +4,7 @@ const { HASH_SEC } = require("../util/Key/keys");
 const RegisterController = {
   Register: async function (req, res) {
     const dataFormClient = req.body;
+    console.log(dataFormClient,7)
     // console.log(dataFormClient);
     try {
       dataFormClient.password = CryptoJS.AES.encrypt(

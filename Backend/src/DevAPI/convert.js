@@ -5,15 +5,15 @@ const sleep = function (ms) {
 };
 async function ConvertMovie_NowPlayingByPage(PageTotal) {
   for (let i = 1; i <= PageTotal; i++) {
-    console.log("Convert item " + i);
-    console.log(
-      `https://api.themoviedb.org/3/discover/movie?api_key=bec721bcb126b9938b6c2f7b39448c63&page=${i}`
-    );
+    console.log("Converting item " + i);
+    // console.log(
+    //   `https://api.themoviedb.org/3/discover/movie?api_key=bec721bcb126b9938b6c2f7b39448c63&page=${i}`
+    // );
     let { data } = await axios.get(
       `https://api.themoviedb.org/3/discover/movie?api_key=bec721bcb126b9938b6c2f7b39448c63&page=${i}`
     );
     let { results } = data;
-    console.log(results);
+    // console.log(results);
     for (let j = 0; j < results.length; j++) {
       let movie = new Movie({
         UpComming: false,

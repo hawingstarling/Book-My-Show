@@ -1,4 +1,5 @@
 const { ConvertMovie_NowPlayingByPage } = require("../DevAPI/convert");
+const { VerifyAdmin } = require("../MiddleWare/Admin");
 const Movie = require("../Model/Movie");
 const { MSG } = require("../util/MessageToClient");
 

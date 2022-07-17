@@ -10,6 +10,6 @@ const Routes = require("./src/Routes/AuthRoutes");
 app.use(bodyParser.urlencoded({ extended: true }));
 connect();
 Routes(app);
-app.listen(PORT,()=>{
-    console.log("Running Auth Server at "+ PORT)
-})
+app.listen(PORT, () => {
+  console.log("Running Auth Server at " + PORT);
+});

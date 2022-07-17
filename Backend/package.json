@@ -5,13 +5,14 @@
   "main": "ChatServer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "startChatServer": "nodemon ChatServer.js",
-    "startAuthServer": "nodemon AuthServer.js"
+    "startAuthServer": "nodemon AuthServer.js",
+    "startMainServer": "nodemon MainServer.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
     "express": "^4.17.3",

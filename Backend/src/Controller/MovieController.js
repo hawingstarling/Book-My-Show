@@ -1,4 +1,7 @@
-const { ConvertMovie_NowPlayingByPage } = require("../DevAPI/convert");
+const {
+  ConvertMovie_NowPlayingByPage,
+  ConvertMovie_UpCommingByPage,
+} = require("../DevAPI/convert");
 const { VerifyAdmin } = require("../MiddleWare/Admin");
 const Movie = require("../Model/Movie");
 const { MSG } = require("../util/MessageToClient");
@@ -30,5 +33,19 @@ const MovieController = {
       res.status(404).json(MSG("Fail To Fetching Lastest ", 404));
     }
   },
+  GetUpComming: async function (req, res) {
+    const TotalPage = parseInt(req.query.page ? req.query.page : 1);
+    try {
+      await Movie.deleteMany({});
+      await ConvertMovie_UpCommingByPage(TotalPage);
+      res.status(200).json(MSG("Update Successfully", 200));
+    } catch (e) {
+      res.status(404).json(MSG("Fail To Fetching Lastest ", 404));
+    }
+  },
+  AddNewVideo: async function (req, res) {},
+  EditInfoVideo: async function (req, res) {},
+  DeleteVideo: async function (req, res) {},
+  SearchVideo: async function (req, res) {},
 };
 module.exports = MovieController;

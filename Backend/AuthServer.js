@@ -1,10 +1,10 @@
 const express = require("express");
 const { connect } = require("./src/Config/MongoConfig");
-
+const cors = require("cors");
 const app = express();
 const PORT = 5001;
+app.use(cors());
 app.use(express.json());
-
 const bodyParser = require("body-parser");
 const Routes = require("./src/Routes/AuthRoutes");
 app.use(bodyParser.urlencoded({ extended: true }));

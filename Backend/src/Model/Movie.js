@@ -12,7 +12,8 @@ const Movies = new Schema(
     overview: { type: String, require: true, default: "" },
     genre_ids: { type: Array, default: [] },
     UpComming: { type: Boolean, default: false },
-    page:{type:Number,default:0}
+    page:{type:Number,default:0},
+    isFetching:{ type: Boolean, default: false },
   },
   {
     timestamps: true,

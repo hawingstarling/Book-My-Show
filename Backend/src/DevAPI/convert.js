@@ -25,6 +25,7 @@ async function ConvertMovie_NowPlayingByPage(PageTotal) {
         original_title: results[j].original_title,
         popularity: results[j].popularity,
         page: i,
+        isFetching: true,
       });
       try {
         let resultSaveProgress = await movie.save();
@@ -59,6 +60,7 @@ async function ConvertMovie_UpCommingByPage(PageTotal) {
         original_title: results[j].original_title,
         popularity: results[j].popularity,
         page: i,
+        isFetching: true,
       });
       try {
         let resultSaveProgress = await movie.save();

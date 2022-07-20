@@ -1,0 +1,55 @@
+
+.wrapper-foot {
+    padding: 0 24px 20px;
+    font-size: 11px;
+    background-color: rgb(51, 51, 56);
+}
+
+.logo-foot {
+    position: relative;
+    width: 100%;
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-foot a {
+    padding: 0 20px;
+    background-color: rgb(51, 51, 56);
+    z-index: 2;
+}
+
+.logo-foot::before {
+    position: absolute;
+    content: '';
+    top: 50%;
+    right: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(93, 93, 95);
+}
+
+.social-foot {
+    text-align: center;
+}
+
+.social-foot a {
+    display: inline-block;
+    margin-right: 10px;
+    width: 37px;
+    height: 37px;
+}
+
+.social-foot a img {
+    &:hover {
+        filter: brightness(0) invert(1)
+    }
+}
+
+.title-foot {
+    padding: 30px;
+    font-size: 11px;
+    color: rgb(102, 102, 102);
+    text-align: center;
+}

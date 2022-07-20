@@ -1,0 +1,36 @@
+// @import  'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@100;300;400;500;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.6rem;
+  font-weight: 400;
+  user-select: none;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+:root {
+  --color-primary: rgb(248, 68, 100);
+  --bg-primary: rgb(51, 53, 69);
+  --bg-secondary: rgb(31, 37, 51);
+}
+
+a {
+  text-decoration: none;
+}

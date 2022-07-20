@@ -1,0 +1,18 @@
+import searchInput from './search.svg'
+import bar from './bar.svg'
+import arrowLeft from './arrow-left.svg'
+import arrowRight from './arrow-right.svg'
+import hut from './hut.svg'
+import callCenter from './callcenter.svg'
+import reSend from './resend.svg'
+import newsLetter from './newsletter.svg'
+import facebook from './facebook.svg'
+import twitter from './twitter.svg'
+import instagram from './instagram.svg'
+import youtube from './youtube.svg'
+import pinterest from './pinterest.svg'
+import linkedIn from './linkedin.svg'
+import screen from './screen.svg'
+import play from './play.svg'
+
+export { play, screen, searchInput, bar, arrowLeft, arrowRight, hut, callCenter, reSend, newsLetter, facebook, twitter, youtube, instagram, pinterest, linkedIn }

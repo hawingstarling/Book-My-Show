@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+<span style="background-color:rgb(51, 53, 69); width: 100%; display: block; padding: 5px 10px; text-align: center">![logo](./src/assets/image/logo.svg)</span>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
+## Overview
+This project use bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
-## Available Scripts
+The project is developed by [hawkstar](https://github.com/hawingstarling) and [GiaThuan](https://github.com/GiaThuanKaren) of SGUniversity in Ho Chi Minh city. If you have any problems or suggestions, please send email or put an **__ISSUE__** above.
 
-In the project directory, you can run:
+## Installation
+Create react app split two files into two packages: Back-end use _NodeJs_ and Client-UI.
 
-### `npm start`
+**Create react app**
+> Create react app set up a modern web app by running one command.
+```sh
+    npx create-react-app Cinema_booking_project
+    cd Cinema_booking_project
+    npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**SASS**
+> Sass makes CSS fun again. Sass is an extension of CSS, adding nested rules, variables, mixins, selector inheritance, and more. It's translated to well-formatted, standard CSS using the command line tool or a plugin for your build system.
+```sh
+    npm install -D sass
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**classnames**
+> A simple JavaScript utility for conditionally joining classNames together.
+```sh
+    npm i classnames
+```
 
-### `npm test`
+**clsx**
+```sh
+    npm install clsx
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**SwiperJs**
+> Swiper is the most modern free mobile touch slider with hardware accelerated transitions and amazing native behavior. It is intended to be used in mobile websites, mobile web apps, and mobile native/hybrid apps.
+```sh
+    npm install swiper
+```
 
-### `npm run build`
+**React Router**
+> Closing in on a decade of client-side routing, React Router v6 takes the best features from previous versions—and its sister project, Reach Router—in our smallest and most powerful package yet.
+```sh
+    npm install react-router-dom@6
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Config
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**prettier**
+> - An opinionated code formatter
+> - Supports many languages
+> - Integrates with most editors
+> - Has few options
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> **__NOTE:__** How to config ? Create an file ``.prettier``. On browser into homepage ``prettier.io`` > Playground > 'Config suitable' > Copy config JSON > 'Paste in file'
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Directory structure
+```
+    Cinema_booking_project/
+        Backend
+        clientui
+            node_modules/
+            public/
+            src/
+                assets/
+                components/
+                page/
+                App.js
+                index.js
+                index.module.scss
+                .gitignore
+                .prettier
+                package-lock.json
+                pakage.json
+```

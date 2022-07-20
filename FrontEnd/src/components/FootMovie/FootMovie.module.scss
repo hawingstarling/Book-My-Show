@@ -1,0 +1,46 @@
+
+.list-movie-foot {
+    width: 100%;
+    background-color: rgb(51, 51, 56);
+    padding: 0;   
+}
+.container-movie {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.item-movie-foot {
+    width: 100%;
+    padding-top: 25px;
+}
+
+.content-title-movie {
+    font-size: 12px;
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+    color: rgb(165, 165, 165);
+}
+
+.list-item-movie {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list-item-movie a {
+    font-size: 11px;
+    color: rgb(127, 127, 127);
+    letter-spacing: 0.1px;
+    text-decoration: none;
+    transition: color 0.25s ease-in-out 0s;
+    margin: 0 5px 5px 0;
+    padding-right: 5px;
+}
+
+.list-item-movie a:not(:last-child) {
+    border-right: 1px solid rgb(127, 127, 127);
+}

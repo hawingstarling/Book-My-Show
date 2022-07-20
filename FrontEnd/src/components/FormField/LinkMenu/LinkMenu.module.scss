@@ -1,0 +1,24 @@
+
+.link-style {
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+}
+
+.link-style:hover {
+    color: #fff;
+}
+
+.news {
+    position: relative;
+}
+
+.news::after {
+    content: "NEW";
+    position: absolute;
+    color: rgb(231, 54, 77);
+    font-size: 8px;
+    top: -50%;
+    right: 0;
+    font-weight: 500;
+}

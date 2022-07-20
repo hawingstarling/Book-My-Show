@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+// import Navbar from "./components/Navbar/Navbar";
+// import SwiperJs from './components/SwiperJs/SwiperJs'
+// import Poster from './components/Poster/Poster'
+// import Banner from './components/Banner/Banner'
+// import Week from "./components/Week/Week";
+// import Footer from "./components/Footer/Footer";
+import Seating from './components/Seating/Seating'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Eddit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Branch of ThanhTien
-        </a>
-      </header>
+      {/* <Navbar />
+      <SwiperJs />
+      <Poster />
+      <Week />
+      <Footer /> */}
+      <Seating />
     </div>
   );
 }

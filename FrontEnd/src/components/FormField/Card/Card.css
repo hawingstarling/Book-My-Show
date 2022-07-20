@@ -1,0 +1,93 @@
+.wrapper-title {
+    margin-bottom: 8px;
+}
+.title-poster {
+    word-break: break-all;
+    color: rgb(51, 51, 51);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.17;
+    display: flex;
+    justify-content: space-between;
+}
+
+.see-all a {
+    word-break: break-all;
+    color: rgb(220, 53, 88);
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.43;
+}
+
+.subtitle-poster {
+    word-break: break-all;
+    color: rgb(102, 102, 102);
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.43;
+}
+/* Swiper */
+.swiper {
+    width: 100%;
+}
+
+.parent-swiper {
+    position: relative;
+
+}
+
+.swiper-card {
+    background: none;
+}
+
+.swiper-button-prev-card, .swiper-button-next-card {
+    position: absolute;
+    /* transform: translateY(370%); */
+    top: 43%;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(153, 153, 153);
+    color: #fff;
+    z-index: 9999;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.swiper-button-prev-card {
+    left: -20px;
+}
+
+.swiper-button-prev-card img, .swiper-button-next-card img {
+    width: 18px;
+    height: 18px;
+    padding: 10px 10px;
+    /* filter: invert(100%); chac la dao nguoc mau` */ 
+}
+
+.swiper-button-next-card {
+    right: -20px;
+}
+
+
+/* .swiper-button-next-card {
+    background-image: url('./../../../assets/icons/arrow-right.svg');
+    width: 18px;
+    height: 18px;
+}
+
+.swiper-button-prev-card {
+    background-image: url('./../../../assets/icons/arrow-left.svg');
+} */
+
+
+
+.swiper-slide img {
+    height: calc(333.583px);
+    max-height: calc(333.583px);
+    width: 222.400px;
+    object-fit: cover;
+    user-select: none;
+    border-radius: 8px;
+}

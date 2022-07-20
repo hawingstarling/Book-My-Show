@@ -1,0 +1,37 @@
+
+.wrapper-contact {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+}
+
+.container-contact {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 1280px;
+    padding: 15px;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.icon-hut-contact {
+    padding: 8px;
+    flex: 0 0 auto;
+}
+
+.list-contact {
+    margin: 0 16px 0 4px;
+    font-weight: 600;
+    flex: 0 0 auto;
+}
+
+.des-contact {
+    flex: 1 1 0%;
+}
+
+.button-contact {
+    flex: 0 0 auto;
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 16px;
+}

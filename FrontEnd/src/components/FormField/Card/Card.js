@@ -1,4 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useEffect, useState } from 'react';
+import axios from 'axios'
 import { Navigation } from 'swiper';
 import { useRef } from 'react'
 import 'swiper/css';
@@ -11,18 +13,30 @@ function Card(props) {
     const {
         see = false,
         title,
-        subtitle,
+        subtitle
     } = props
 
-     const swiperButtonPrev = useRef(null)
-     const swiperButtonNext = useRef(null)
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-     const params = {
-          navigation: {
-               nextEl: swiperButtonPrev.current,
-               prevEl: swiperButtonNext.current,
-          }
-     }
+    useEffect(() => {
+        setLoading(true)
+        axios
+            .get('https://backendmoviebookingv001.herokuapp.com/movie/all')
+            .then(function (res) {
+                setMovies(res.data.data)
+            })
+            .catch((error) => console.log(error))
+    }, []);
+
+    const swiperButtonPrev = useRef(null)
+    const swiperButtonNext = useRef(null)
+    const params = {
+         navigation: {
+              nextEl: swiperButtonPrev.current,
+              prevEl: swiperButtonNext.current,
+         }
+    }
 
     return (
         <>  
@@ -53,7 +67,13 @@ function Card(props) {
                     }}
                     modules={[Navigation]}
                 >
-                    <SwiperSlide>
+                    { loading && movies.map((movie) => (
+                        <SwiperSlide>
+                            <img src={movie?.poster_path?.w500} alt="movie" />
+                        </SwiperSlide>
+                    ))}
+
+                    {/* <SwiperSlide>
                         <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:oi-discovery-catalog@@icons@@premiere-icon.png,ox-322,oy-20:q-80/et00327883-dkjdurjkaa-portrait.jpg" alt="poster" />
                     </SwiperSlide>
                     <SwiperSlide>
@@ -70,7 +90,7 @@ function Card(props) {
                     </SwiperSlide>
                     <SwiperSlide>
                         <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:oi-discovery-catalog@@icons@@premiere-icon.png,ox-322,oy-20:q-80/et00327883-dkjdurjkaa-portrait.jpg" alt="poster" />
-                    </SwiperSlide>
+                    </SwiperSlide> */}
                 </Swiper>
                 <div className='swiper-button-prev-card' ref={swiperButtonPrev} >
                     <img src={arrowLeft} alt="" />

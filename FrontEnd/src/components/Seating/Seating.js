@@ -1,5 +1,6 @@
 import { screen, play } from '../../assets/icons'
-import { spider, logo } from '../../assets/image'
+import { spider } from '../../assets/image'
+import { useEffect, useState } from 'react'
 import classNames from 'classnames/bind';
 import styles from './Seating.module.scss'
 
@@ -80,9 +81,44 @@ const SEAT = {
 const data = SEAT.seatInfo
 
 function Seating() {
+    const [seatSelected, setSeatSelected] = useState([]);
+    const [countDown, setCountDown] = useState(10);
+
+    useEffect(() => {
+        const timerId = setInterval(() => {
+            setCountDown(prevState => prevState - 1)
+        }, 1000)
+
+        if (countDown === 0) {
+            setSeatSelected([])
+            setCountDown(10)    // để làm xuất hiện alert
+        }
+
+        return () => {
+            clearInterval(timerId)
+        }
+    }, [countDown]);
+
+    const handleSeatSelected = (seat) => {
+        if (seatSelected.includes(seat))  {
+            const index = seatSelected.indexOf(seat)
+            seatSelected.splice(index, 1)
+        } else {
+            setSeatSelected(prev => {
+                const newSeat = [...prev, seat]
+
+                console.log('seat useState: ', newSeat);
+
+                return newSeat
+            })
+        }
+    }
 
     return (
         <>
+            {/* De vay de test */}
+            {countDown}
+            
             <div className={cx('wrapper-seat')}>
                 <div className={cx('movie-seat')}>
                     <div className={cx('card-seat')}>
@@ -111,20 +147,21 @@ function Seating() {
                             <span className={cx('sign-seat')}>{key}</span>
                             { [...Array(SEAT.rowSeats)].map((s, i) => (
                                 <div
-                                    key={`seat-${i + 1}`}
+                                    key={`seat-${key}-${i + 1}`}
                                     className={cx('seat', 
-                                        `seat-${i + 1}`, data[key].aisleSeats.map((aisle) => (
+                                        `seat-${key}-${i + 1}`, data[key].aisleSeats.map((aisle) => (
                                             aisle === (i + 1) ? 'seat-block' : '' ||
-                                        data[key].occupied.map((available) => (
+                                            data[key].occupied.map((available) => (
                                             available === (i + 1) ? 'seat-occupied' : ''
                                         ))
                                     )))}
+                                    onClick={() => handleSeatSelected(`${key}-${i + 1}`)}
                                 >
                                     {i + 1}
                                 </div>
                             )) }
                         
-                            {console.log(data[key].aisleSeats)}
+                            {/* {console.log(data[key].aisleSeats)} */}
                         </div>
                     )) }
                     

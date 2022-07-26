@@ -4,18 +4,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './SwiperJs.css';
+import { spiderscard } from '../../assets/image'
 
 function SwiperJs() {
-
-     // const swiperButtonPrev = useRef(null)
-     // const swiperButtonNext = useRef(null)
-
-     // const params = {
-     //      navigation: {
-     //           nextEl: swiperButtonPrev.current,
-     //           prevEl: swiperButtonNext.current
-     //      }
-     // }
 
     return ( 
        <Swiper
@@ -25,18 +16,35 @@ function SwiperJs() {
           className="swiper-module"
           modules={[Pagination, Navigation, Autoplay]}
        >
-            <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 0</h1></SwiperSlide>
+            <SwiperSlide>
+               <div className="wrapper-swiper-slide">
+                  <div>
+                     <div className="movie-card-swiper">
+                        <img className="image-movie-swiper" src={spiderscard} alt="Watch Spider-Man: No Way Home Online" />
+                     </div>
+                  </div>
+                  <div className="content-name-movie">
+                     <h1>Spider-Man: No Way Home</h1>
+                     <div className="introduce-content-movie">
+                        <div className="language-movie">
+                           <div>
+                              <a href="https://in.bookmyshow.com/explore/stream-movies-english">English</a>
+                           </div>
+                           <span>•</span>
+                           <div className="language-movie-two">
+                              <a>Languages:</a>
+                              <span>Audio(4), Subtitles(1)</span>
+                           </div>
+                        </div>
+                        <div>
+
+                        </div>
+                     </div>
+                  </div>
+                  <div></div>
+               </div>
+            </SwiperSlide>
             <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 1</h1></SwiperSlide>
-            <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 2</h1></SwiperSlide>
-            <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 3</h1></SwiperSlide>
-            <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 4</h1></SwiperSlide>
-            <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 5</h1></SwiperSlide>
-            <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 6</h1></SwiperSlide>
-            <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 7</h1></SwiperSlide>
-            <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 8</h1></SwiperSlide>
-            <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 9</h1></SwiperSlide>
-            {/* <div className={cx('swiper-button-prev')} ref={swiperButtonPrev} ></div>
-            <div className={cx('swiper-button-next')} ref={swiperButtonNext} ></div> */}
        </Swiper>
     );
 }

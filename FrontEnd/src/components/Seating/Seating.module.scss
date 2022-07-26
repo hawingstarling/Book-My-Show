@@ -100,12 +100,14 @@
     width: 23px;
     height: 23px;
     border: 1px solid #eee;
+    pointer-events: none;
 }
 
 .seat-block {
     border: 1px solid transparent;
     background-color: transparent;
     color: transparent;
+    pointer-events: none;
 }
 
 .row {
@@ -185,8 +187,11 @@
     background-color: #1ea83c;
 }
 
-.seat:not(.seat-occupied, .seat-block):hover {
-    background-color: #1ea83c;
-    color: #fff;
-    cursor: pointer;
+.seat:not(.seat-occupied, .seat-block, .seat-sold, .seat-avaiable) {
+    &:hover, &:focus-within {
+        background-color: #1ea83c;
+        color: #fff;
+        cursor: pointer;
+    }
+
 }

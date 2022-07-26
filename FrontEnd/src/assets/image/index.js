@@ -4,5 +4,6 @@ import global from './global-favourities.png'
 import thrill from './thrill-o-pilia.png'
 import golden from './golden-era-collection.png'
 import spider from './spider.png'
+import spiderscard from './spider-man-no-way-home.jpg'
 
-export { logo, eventful, global, thrill, golden, spider }
+export { logo, eventful, global, thrill, golden, spider, spiderscard }

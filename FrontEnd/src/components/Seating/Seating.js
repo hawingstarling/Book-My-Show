@@ -74,9 +74,55 @@ const SEAT = {
                 0,
                 0
             ]
-        }
+        },
+        "F": {
+            "numberOfSeats": 20,
+            "aisleSeats": [
+                9,
+                10,
+                11,
+                12,
+                13,
+                14
+            ],
+            "occupied": [
+                0,
+                0
+            ]
+        },
+        "G": {
+            "numberOfSeats": 20,
+            "aisleSeats": [
+                9,
+                10,
+                11,
+                12,
+                13,
+                14
+            ],
+            "occupied": [
+                0,
+                0
+            ]
+        },
+        
     }
 }
+
+var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+var days = ['SUN', 'MON', 'TUE', 'WEB', 'THU', 'FRI', 'SAT'];
+const monthNames = ["Ja", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
+const DATE = [
+    { date: currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * 0) },
+    { date: currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * 1) },
+    { date: currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * 2) },
+    { date: currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * 3) },
+    { date: currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * 4) },
+    { date: currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * 5) },
+    { date: currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * 6) },
+]
 
 const data = SEAT.seatInfo
 
@@ -84,20 +130,20 @@ function Seating() {
     const [seatSelected, setSeatSelected] = useState([]);
     const [countDown, setCountDown] = useState(10);
 
-    useEffect(() => {
-        const timerId = setInterval(() => {
-            setCountDown(prevState => prevState - 1)
-        }, 1000)
+    // useEffect(() => {
+    //     const timerId = setInterval(() => {
+    //         setCountDown(prevState => prevState - 1)
+    //     }, 1000)
 
-        if (countDown === 0) {
-            setSeatSelected([])
-            setCountDown(10)    // để làm xuất hiện alert
-        }
+    //     if (countDown === 0) {
+    //         setSeatSelected([])
+    //         setCountDown(10)    // để làm xuất hiện alert
+    //     }
 
-        return () => {
-            clearInterval(timerId)
-        }
-    }, [countDown]);
+    //     return () => {
+    //         clearInterval(timerId)
+    //     }
+    // }, [countDown]);
 
     const handleSeatSelected = (seat) => {
         if (seatSelected.includes(seat))  {
@@ -115,10 +161,7 @@ function Seating() {
     }
 
     return (
-        <>
-            {/* De vay de test */}
-            {countDown}
-            
+        <>  
             <div className={cx('wrapper-seat')}>
                 <div className={cx('movie-seat')}>
                     <div className={cx('card-seat')}>
@@ -140,81 +183,103 @@ function Seating() {
                         </div>
                     </div>
                 </div>
-                
-                <div className={cx('container-seat')}>
-                    { Object.keys(data).map((key, index) => (
-                        <div className={cx('row', `row-${key}`)}>
-                            <span className={cx('sign-seat')}>{key}</span>
-                            { [...Array(SEAT.rowSeats)].map((s, i) => (
-                                <div
-                                    key={`seat-${key}-${i + 1}`}
-                                    className={cx('seat', 
-                                        `seat-${key}-${i + 1}`, data[key].aisleSeats.map((aisle) => (
-                                            aisle === (i + 1) ? 'seat-block' : '' ||
-                                            data[key].occupied.map((available) => (
-                                            available === (i + 1) ? 'seat-occupied' : ''
-                                        ))
-                                    )))}
-                                    onClick={() => handleSeatSelected(`${key}-${i + 1}`)}
-                                >
-                                    {i + 1}
+                <div className={cx('main-seat')}>
+                    <div className={cx('options-seat')}>
+                        <div className={cx('date-seat')}>
+                            { DATE.map((date, index) => (
+                                <div className={cx('each-seat')} key={index}>
+                                    <div>{ days[date.date.getDay()] }</div>
+                                    <div className={cx('date-numeric')}>{ date.date.getDate() }</div>
+                                    <div>{ monthNames[date.date.getMonth()] }</div>
                                 </div>
-                            )) }
-                        
-                            {/* {console.log(data[key].aisleSeats)} */}
+                            ))}
                         </div>
-                    )) }
+                        <div className={cx('show-time')}>
+                            <div>
+                                <div className={cx('timer-seat')}>10:00</div>
+                            </div>
+                            <div>
+                                <div className={cx('timer-seat')}>12:30</div>
+                            </div>
+                            <div>
+                                <div className={cx('timer-seat')}>15:00</div>
+                            </div>
+                            <div>
+                                <div className={cx('timer-seat')}>17:30</div>
+                            </div>
+                            <div>
+                                <div className={cx('timer-seat')}>22:30</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={cx('container-seat')}>
+                        { Object.keys(data).map((key, index) => (
+                            <div className={cx('row', `row-${key}`)}>
+                                <span className={cx('sign-seat')}>{key}</span>
+                                { [...Array(SEAT.rowSeats)].map((s, i) => (
+                                    <div
+                                        key={`seat-${key}-${i + 1}`}
+                                        className={cx('seat',
+                                            `seat-${key}-${i + 1}`, data[key].aisleSeats.map((aisle) => (
+                                                aisle === (i + 1) ? 'seat-block' : '' ||
+                                                data[key].occupied.map((available) => (
+                                                available === (i + 1) ? 'seat-occupied' : ''
+                                            ))
+                                        )))}
+                                        onClick={() => handleSeatSelected(`${key}-${i + 1}`)}
+                                    >
+                                        {i + 1}
+                                    </div>
+                                )) }
                     
-
-                    <div className={cx('screen')}>
-                        <span><img src={screen} alt="screen" /></span>
-                        <span className={cx('text-screen')}>All eyes this way please!</span>
+                                {/* {console.log(data[key].aisleSeats)} */}
+                            </div>
+                        )) }
+                    
+                        <div className={cx('screen')}>
+                            <span><img src={screen} alt="screen" /></span>
+                            <span className={cx('text-screen')}>All eyes this way please!</span>
+                        </div>
+                        <div className={cx('select-seat')}>
+                            <div className={cx('seat-sold-movie')}>
+                                <div className={cx('seat', 'seat-sold')}></div>
+                                <p>Sold</p>
+                            </div>
+                            <div className={cx('seat-avaiable-movie')}>
+                                <div className={cx('seat', 'seat-avaiable')}></div>
+                                <p>Avaiable</p>
+                            </div>
+                            <div className={cx('seat-selected-movie')}>
+                                <div className={cx('seat', 'seat-selected')}></div>
+                                <p>Selected</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <div className={cx('select-seat')}>
-                        <div className={cx('seat-sold-movie')}>
-                            <div className={cx('seat', 'seat-sold')}></div>
-                            <p>Sold</p>
-                        </div>
-                        <div className={cx('seat-avaiable-movie')}>
-                            <div className={cx('seat', 'seat-avaiable')}></div>
-                            <p>Avaiable</p>
-                        </div>
-                        <div className={cx('seat-selected-movie')}>
-                            <div className={cx('seat', 'seat-selected')}></div>
-                            <p>Selected</p>
-                        </div>
+                    <div className={cx('container-checkout')}>
+                        <ul className={cx('ul-left')}>
+                            <li>
+                                <div>NAME</div>
+                                <div>hawkstar</div>
+                            </li>
+                            <li>
+                                <div>TICKETS</div>
+                                <div>3 tickets, Seats: A5, B7, G8</div>
+                            </li>
+                        </ul>
+                        <ul className={cx('ul-right')}>
+                            <li>
+                                <div>PRICE</div>
+                                <div className={cx('total-seat')}>$25,00</div>
+                            </li>
+                            <li className={cx('checkout')}>
+                                <div>CHECKOUT</div>
+                            </li>
+                        </ul>
                     </div>
-
                 </div>
-
             </div>
-            {/* <div className={cx('select-seat')}>
-                <div className={cx('seat-sold-movie')}>
-                    <div className={cx('seat', 'seat-sold')}></div>
-                    <p>Sold</p>
-                </div>
-                <div className={cx('seat-avaiable-movie')}>
-                    <div className={cx('seat', 'seat-avaiable')}></div>
-                    <p>Avaiable</p>
-                </div>
-                <div className={cx('seat-selected-movie')}>
-                    <div className={cx('seat', 'seat-selected')}></div>
-                    <p>Selected</p>
-                </div>
-            </div> */}
         </>
     );
 }
 
 export default Seating;
-
-// { Object.keys(data).map((key, index) => (
-//     <div className={cx('row', `row-${data[key]}`)}>
-//         { [...Array(data[key].numberOfSeats)].map((seat, index) => (
-//             <div className={cx('seat', `seat-${index + 1}`)}></div>
-//         ))
-
-//         }
-//     </div>
-// ))}

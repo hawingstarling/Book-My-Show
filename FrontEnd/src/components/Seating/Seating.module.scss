@@ -70,12 +70,102 @@
 
 .container-seat {
     width: 100%;
-    padding: 50px 30px;
+    padding: 50px 0;
     background-color: #fafafa;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex: 1;
+}
+
+.main-seat {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+    height: 100vh;
+}
+
+.options-seat {
+    width: 100%;
+    background-color: #f5f5fa;
+    height: 64px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.date-numeric {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18px;
+    // color: #333;
+}
+
+.date-seat, .show-time {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    font-size: 10px;
+    color: #666;
+    font-weight: 400;
+    line-height: 12px;
+    text-transform: uppercase;
+}
+
+.show-time {
+    font-size: 12px;
+    color: #666;
+}
+
+.show-time > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timer-seat {
+    font-weight: 500;
+    line-height: 18px;
+    border: 1px solid #2DC492;
+    border-radius: 2px;
+    color: #2DC492;
+    padding: 5px 20px;
+}
+
+.timer-seat:hover, .timer-seat:focus-within {
+    background-color: #2DC492;
+    color: #fff;
+    cursor: pointer;
+}
+
+.date-seat > div, .show-time > div {
+    padding-left: 15px;
+}
+
+.each-seat > div {
+    margin: 0px 0px;
+}
+
+.each-seat {
+    width: 40px;
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.each-seat:hover {
+    color: #EC5E71;
+    cursor: pointer;
+}
+
+.selected {
+    border-top: 1px solid #ffbd2b;
+    border-bottom: 1px solid #ffbd2b;
 }
 
 .seat {
@@ -194,4 +284,52 @@
         cursor: pointer;
     }
 
+}
+
+.container-checkout {
+    width: 100%;
+    height: 64px;
+    background-color: rgba(31, 37, 51, 0.85);
+    display: flex;
+    justify-content: space-between;
+    color: #b3b3b3;
+    font-size: 12px;
+    align-items: center;
+}
+
+.container-checkout ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.ul-left li div:last-child {
+    margin-right: 70px;
+}
+
+.ul-right li:first-child {
+    margin-right: 70px;
+}
+
+.checkout div {
+    width: 180px;
+    height: 64px;
+    background-color: rgb(31, 37, 51);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.container-checkout ul li div:last-child:not(.checkout div) {
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 0.7px;
+}
+
+.total-seat {
+    font-weight: 700;
 }

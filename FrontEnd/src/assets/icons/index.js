@@ -14,5 +14,6 @@ import pinterest from './pinterest.svg'
 import linkedIn from './linkedin.svg'
 import screen from './screen.svg'
 import play from './play.svg'
-
-export { play, screen, searchInput, bar, arrowLeft, arrowRight, hut, callCenter, reSend, newsLetter, facebook, twitter, youtube, instagram, pinterest, linkedIn }
+import close from './close.svg'
+import apple from './apple.svg'
+export { apple, close, play, screen, searchInput, bar, arrowLeft, arrowRight, hut, callCenter, reSend, newsLetter, facebook, twitter, youtube, instagram, pinterest, linkedIn }

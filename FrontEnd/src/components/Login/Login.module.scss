@@ -1,0 +1,160 @@
+
+.wrapper-login {
+    width: 428px;
+    height: auto;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    margin: 0 auto;
+}
+
+.container-login {
+    padding: 0 42px;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(102, 102, 102);
+}
+
+.get-started {
+    padding: 24px 28px;
+    border-radius: 8px;
+    display: flex;
+}
+
+.content-getstarted {
+    flex: 1 1 0%;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: center;
+    text-transform: none;
+    color: rgb(51, 51, 51);
+}
+
+.wrapper-google, .wrapper-apple {
+    width: 100%;
+    height: 48px;
+    cursor: pointer;
+    border: 1px solid rgb(153, 153, 153);
+    border-radius: 4px;
+    margin-bottom: 16px;
+    transition: 0.5s;
+}
+
+.wrapper-google:hover, .wrapper-apple:hover {
+    background: rgb(242, 242, 242);
+    border: 1px solid rgb(235, 235, 235);
+}
+
+.container-google, .container-apple {
+    font-weight: 500;
+    color: rgb(89, 89, 89);
+    padding: 13px 0;
+    text-align: center;
+    position: relative;
+}
+
+.container-google span, .container-apple span {
+    display: inline-flex;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    text-align: center;
+    margin-left: 8px;
+}
+
+.wrapper-or {
+    text-align: center;
+}
+
+.wrapper-rules {
+    padding: 40px 0 24px 0;
+}
+
+.container-rules {
+    color: rgb(102, 102, 102);
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 0px;
+}
+
+.container-rules a {
+    text-decoration: underline;
+}
+
+.form-user {
+    padding: 30px 0;
+}
+
+.input-box {
+    position: relative;
+    width: 344px;
+}
+
+.input-box:first-child {
+    margin-bottom: 16px;
+}
+
+.input-box input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(153, 153, 153);
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    color: rgb(102, 102, 102);
+    transition: 0.5s;
+}
+
+.input-box span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1.1 em;
+    color: rgb(102, 102, 102);
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.input-box input:valid ~ span,
+.input-box input:focus ~ span {
+    color: var(--color-primary);
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.8em;
+    padding: 0 10px;
+    background-color: rgb(255, 255, 255);
+    border-left: 1px solid var(--color-primary);
+    border-right: 1px solid var(--color-primary);
+    letter-spacing: 0.2rem;
+}
+
+.input-box:nth-child(2) input:valid ~ span,
+.input-box:nth-child(2) input:focus ~ span {
+    background: var(--color-primary);
+    color: rgb(255, 255, 255);
+    border-radius: 2px;
+}
+
+.input-box input:valid,
+.input-box input:focus {
+    border: 1px solid var(--color-primary);
+}
+
+.container-button button {
+    width: 100%;
+    padding: 12px 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(248, 68, 100);
+}

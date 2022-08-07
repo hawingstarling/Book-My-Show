@@ -129,6 +129,7 @@ const data = SEAT.seatInfo
 function Seating() {
     const [seatSelected, setSeatSelected] = useState([]);
     const [countDown, setCountDown] = useState(10);
+    const [ticket, setTicket] = useState({});
 
     // useEffect(() => {
     //     const timerId = setInterval(() => {
@@ -155,10 +156,28 @@ function Seating() {
 
                 console.log('seat useState: ', newSeat);
 
+                setTicket(prevTicket => {
+                    const newTicket = [...prevTicket, ticket]
+                    
+                    console.log('ticket: ', newTicket);
+
+                    return newTicket
+                })
+
                 return newSeat
             })
         }
     }
+
+    const handlePickDate = (date) => {
+        setTicket({
+            date,
+            seatSelected
+        })
+        console.log('ticket: ', ticket);
+
+    }
+
 
     return (
         <>  
@@ -187,7 +206,11 @@ function Seating() {
                     <div className={cx('options-seat')}>
                         <div className={cx('date-seat')}>
                             { DATE.map((date, index) => (
-                                <div className={cx('each-seat')} key={index}>
+                                <div 
+                                    className={cx('each-seat')} 
+                                    key={index}
+                                    onClick={() => handlePickDate(date.date.getDate())}
+                                >
                                     <div>{ days[date.date.getDay()] }</div>
                                     <div className={cx('date-numeric')}>{ date.date.getDate() }</div>
                                     <div>{ monthNames[date.date.getMonth()] }</div>

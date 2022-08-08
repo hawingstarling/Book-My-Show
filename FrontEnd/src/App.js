@@ -6,6 +6,7 @@ import Week from "./components/Week/Week";
 import Footer from "./components/Footer/Footer";
 import Seating from './components/Seating/Seating'
 import Login from './components/Login/Login'
+import User from './components/User/User'
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       <Week />
       <Footer /> */}
       {/* <Seating /> */}
-      <Login />
+      {/* <Login /> */}
+      <User />
     </div>
   );
 }

@@ -16,4 +16,6 @@ import screen from './screen.svg'
 import play from './play.svg'
 import close from './close.svg'
 import apple from './apple.svg'
-export { apple, close, play, screen, searchInput, bar, arrowLeft, arrowRight, hut, callCenter, reSend, newsLetter, facebook, twitter, youtube, instagram, pinterest, linkedIn }
+import edit from './edit.svg'
+
+export { edit, apple, close, play, screen, searchInput, bar, arrowLeft, arrowRight, hut, callCenter, reSend, newsLetter, facebook, twitter, youtube, instagram, pinterest, linkedIn }

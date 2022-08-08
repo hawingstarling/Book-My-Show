@@ -44,7 +44,6 @@ function Login() {
     const db = getFirestore();
     const ggProvider = new GoogleAuthProvider()
     const oProvider = new OAuthProvider('apple.com')
-    // const apProvider = new AppleAuthProvider()
 
     const signInWithGoogle = async () => {
         try {

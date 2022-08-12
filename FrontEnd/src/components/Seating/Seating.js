@@ -1,6 +1,7 @@
 import { screen, play } from '../../assets/icons'
 import { spider } from '../../assets/image'
 import { useEffect, useState } from 'react'
+import CountdownTimer from '../../utils/CountdownTimer'
 import classNames from 'classnames/bind';
 import styles from './Seating.module.scss'
 
@@ -131,6 +132,11 @@ function Seating() {
     const [countDown, setCountDown] = useState(10);
     const [ticket, setTicket] = useState({});
 
+    const THREE_MINUTES_IN_MS = 5 * 60 * 1000;  // 3 minutes
+    const NOW_IN_MS = new Date().getTime(); // getTime from 1 January 1970 to now. 
+    const dateTimeAfterThreeMinutes = NOW_IN_MS + THREE_MINUTES_IN_MS;
+
+
     // useEffect(() => {
     //     const timerId = setInterval(() => {
     //         setCountDown(prevState => prevState - 1)
@@ -156,28 +162,27 @@ function Seating() {
 
                 console.log('seat useState: ', newSeat);
 
-                setTicket(prevTicket => {
-                    const newTicket = [...prevTicket, ticket]
+                // setTicket(prevTicket => {
+                //     const newTicket = [...prevTicket, ticket]
                     
-                    console.log('ticket: ', newTicket);
+                //     console.log('ticket: ', newTicket);
 
-                    return newTicket
-                })
+                //     return newTicket
+                // })
 
                 return newSeat
             })
         }
     }
 
-    const handlePickDate = (date) => {
+    const handlePickDate = (day, date, month) => {
         setTicket({
-            date,
+            time: { day, date, month },
             seatSelected
         })
         console.log('ticket: ', ticket);
 
     }
-
 
     return (
         <>  
@@ -209,13 +214,19 @@ function Seating() {
                                 <div 
                                     className={cx('each-seat')} 
                                     key={index}
-                                    onClick={() => handlePickDate(date.date.getDate())}
+                                    onClick={() => handlePickDate(days[date.date.getDay()], 
+                                        date.date.getDate(), 
+                                        monthNames[date.date.getMonth()])
+                                            }
                                 >
                                     <div>{ days[date.date.getDay()] }</div>
                                     <div className={cx('date-numeric')}>{ date.date.getDate() }</div>
                                     <div>{ monthNames[date.date.getMonth()] }</div>
                                 </div>
                             ))}
+                        </div>
+                        <div className={cx('show-counter')}>
+                            <CountdownTimer targetDate={dateTimeAfterThreeMinutes} />
                         </div>
                         <div className={cx('show-time')}>
                             <div>

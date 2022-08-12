@@ -29,13 +29,14 @@
 
 .content-movie-seat h5 {
     font-size: 14px;
-    margin-bottom: -7px;
+    margin-bottom: 7px;
     letter-spacing: 0.9px;
 }
 
 .content-movie-seat p {
     font-size: 12px;
     letter-spacing: 0.4px;
+    margin-bottom: 20px;
 }
 
 .play-movie {
@@ -297,10 +298,19 @@
     align-items: center;
 }
 
+.show-counter {
+    display: flex;
+    align-items: center;
+}
+
 .container-checkout ul {
     list-style: none;
     display: flex;
     align-items: center;
+}
+
+.container-checkout ul:first-child {
+    padding: 0 15px;
 }
 
 .ul-left li div:last-child {
@@ -328,8 +338,10 @@
     color: #fff;
     font-size: 13px;
     letter-spacing: 0.7px;
+    padding-top: 1px;
 }
 
 .total-seat {
     font-weight: 700;
+    font-size: 25px;
 }

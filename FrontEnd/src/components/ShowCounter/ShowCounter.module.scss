@@ -1,0 +1,23 @@
+.show-counter, .is-danger {
+    display: flex;
+    font-size: 16px;
+    line-height: 18px;
+    border-radius: 2px;
+    padding: 10px 25px;
+}
+
+.show-counter {
+    font-weight: 500;
+    color: #2DC492;
+    border: 1px solid #2DC492;
+}
+
+.is-danger {
+    font-weight: 700;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+.show-counter span {
+    padding: 0 2px;
+}

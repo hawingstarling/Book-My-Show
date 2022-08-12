@@ -6,5 +6,6 @@ import golden from './golden-era-collection.png'
 import spider from './spider.png'
 import spiderscard from './spider-man-no-way-home.jpg'
 import obito from './obito.jpg'
+import qr from './qr.png'
 
-export { obito, logo, eventful, global, thrill, golden, spider, spiderscard }
+export { qr, obito, logo, eventful, global, thrill, golden, spider, spiderscard }

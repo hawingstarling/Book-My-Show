@@ -64,12 +64,15 @@ Create react app split two files into two packages: Back-end use _NodeJs_ and Cl
             node_modules/
             public/
             src/
+                api/
                 assets/
                 components/
+                firebase/
                 page/
                 App.js
                 index.js
                 index.module.scss
+                .env
                 .gitignore
                 .prettier
                 package-lock.json

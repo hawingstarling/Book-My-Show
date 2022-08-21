@@ -29,7 +29,8 @@
 
 .content-movie-seat h5 {
     font-size: 14px;
-    margin-bottom: 7px;
+    margin-bottom: 10px;
+    margin-top: 5px;
     letter-spacing: 0.9px;
 }
 
@@ -137,7 +138,7 @@
     padding: 5px 20px;
 }
 
-.timer-seat:hover, .timer-seat:focus-within {
+.timer-seat:hover, .timer-seat.selected-time {
     background-color: #2DC492;
     color: #fff;
     cursor: pointer;
@@ -164,6 +165,14 @@
     cursor: pointer;
 }
 
+.each-seat.selected-date {
+    background-color: #f84464;
+    border-radius: 8px;
+    padding: 5px;
+    color: #fff;
+}
+
+
 .selected {
     border-top: 1px solid #ffbd2b;
     border-bottom: 1px solid #ffbd2b;
@@ -184,7 +193,7 @@
     color: #1ea83c;
 }
 
-.seat-occupied {
+.seat.occupied {
     background-color: #eee;
     color: #fff;
     border: none;
@@ -194,7 +203,7 @@
     pointer-events: none;
 }
 
-.seat-block {
+.seat.block {
     border: 1px solid transparent;
     background-color: transparent;
     color: transparent;
@@ -269,13 +278,14 @@
     margin-left: 8px;
 }
 
-.seat-sold {
-    background-color: #eee;
-    border: none;
+.seat.selected {
+    background-color: #1ea83c;
+    color: #fff;
 }
 
-.seat-selected {
-    background-color: #1ea83c;
+.seat.sold {
+    background-color: #eee;
+    border: none;
 }
 
 .seat:not(.seat-occupied, .seat-block, .seat-sold, .seat-avaiable) {
@@ -332,6 +342,12 @@
     font-size: 16px;
     letter-spacing: 0.5px;
     font-weight: 500;
+    transition: all .5s;
+}
+
+.checkout div:hover, .checkout div:active {
+    letter-spacing: 1px;
+    color: #fff;
 }
 
 .container-checkout ul li div:last-child:not(.checkout div) {

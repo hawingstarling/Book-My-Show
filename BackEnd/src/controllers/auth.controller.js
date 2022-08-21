@@ -1,5 +1,7 @@
 const User = require('../models/user.model')
 const Role = require('../models/role.model')
+const signInWithGoogle = require('../firebase/services')
+const signInWithApple = require('../firebase/services')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -10,10 +12,10 @@ class AuthController {
             const hashed = await bcrypt.hash(req.body.password, salt)
 
             const user = new User({
-                username: 'User',
+                username: 'Userbook',
                 email: req.body.email,
                 password: hashed,
-                roles: 1
+                // roles: 'admin'
             })
 
             // save to mongodb
@@ -27,23 +29,24 @@ class AuthController {
     generateAT (user) {
         return jwt.sign({
             id: user._id,
-            role: user.roles
+            // role: user.roles
         }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s'})
     }
 
     generateRT (user) {
         return jwt.sign({
             id: user._id,
-            role: user.roles
+            // role: user.roles
         }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1d'})
     }
 
     async login (req, res) {
         try {
-            const user = await User.findOne({ username: req.body.username })
-                if (!user) {
-                    res.status(404).json('Username not exist.')
-                }
+            const user = await User.findOne({ email: req.body.email })
+            
+            if (!user) {
+                res.status(404).json('Username not exist.')
+            }
             const validPassword = await bcrypt.compare(
                 req.body.password,
                 user.password
@@ -63,8 +66,8 @@ class AuthController {
                     path: '/',
                     sameSite: 'strict'
                 })
-
                 res.status(200).json({ accessToken: newAccessToken })
+                // res.redirect('/')
             }
         } catch (error) {
             res.status(500).json(error)

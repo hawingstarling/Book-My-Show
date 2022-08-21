@@ -1,3 +1,6 @@
+import axios from 'axios'
+import { useFormik } from 'formik'
+import * as Yup from "yup";
 import { useEffect, useState, useRef } from 'react'
 import { apple } from '../../assets/icons'
 import { close } from '../../assets/icons'
@@ -10,18 +13,47 @@ import styles from './Login.module.scss'
 
 const cx = classNames.bind(styles)
 
-function Login() {
-    const [submit, setSubmit] = useState(false);
-    const [button, setButton] = useState();
+function Login({ setIsLogin }) {
+    const [submit, setSubmit] = useState(true);
+    // const [button, setButton] = useState();
+    const [signIn, setSignIn] = useState([]);
     const inputRef = useRef()
 
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validationSchema: Yup.object({
+            email: Yup.string()
+                .email('Invalid email format.')
+                .required('Required.'),
+            password: Yup.string()
+                .min(6, 'Minimum 6 characters.')
+                .required('Required.')
+        }),
+        onSubmit: values => {
+            alert(JSON.stringify(values, null, 2));  
+        }
+
+    })
+
     useEffect(() => {
-        if (button) {
+        if (formik.values.email && formik.values.password) {
             setSubmit(true)
         } else {
             setSubmit(false)
         }
-    }, [button]);
+    }, [formik.values.email, formik.values.password]);
+
+    useEffect( () => {
+        axios.post('http://localhost:5000/signin')
+            .then((response) => {
+                const data = response
+                console.log(data);
+                setSignIn(data)
+            })
+    }, []);
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -82,53 +114,70 @@ function Login() {
         }
     }
 
+
     return ( 
-        <div className={cx('wrapper-login')}>
-            <div className={cx('get-started')}>
-                <div className={cx('content-getstarted')}>Get Started</div>
-                <div>
-                    <img src={close} alt="close" />
-                </div>
-            </div>
-            <div className={cx('container-login')} >
-                <div className={cx('wrapper-google')} onClick={signInWithGoogle} >
-                    <div className={cx('container-google')}>
-                        <span>
-                            <img src="https://in.bmscdn.com/webin/common/icons/googlelogo.svg" alt="google" />
-                        </span>
-                        Continue with Google
+        <div className={cx('login')}>
+            <div className={cx('wrapper')}>
+                <div className={cx('wrapper-login')}>
+                    <div className={cx('get-started')}>
+                        <div className={cx('content-getstarted')}>Get Started</div>
+                        <div onClick={() => setIsLogin(false)}>
+                            <img src={close} alt="close" />
+                        </div>
                     </div>
-                </div>
-                <div className={cx('wrapper-apple')} onClick={signInWithApple} >
-                    <div className={cx('container-apple')}>
-                        <span>
-                            <img src={apple} alt="apple" />
-                        </span>
-                        Continue with Apple
+                    <div className={cx('container-login')} >
+                        <div className={cx('wrapper-google')} onClick={signInWithGoogle} >
+                            <div className={cx('container-google')}>
+                                <span>
+                                    <img src="https://in.bmscdn.com/webin/common/icons/googlelogo.svg" alt="google" />
+                                </span>
+                                Continue with Google
+                            </div>
+                        </div>
+                        <div className={cx('wrapper-apple')} onClick={signInWithApple} >
+                            <div className={cx('container-apple')}>
+                                <span>
+                                    <img src={apple} alt="apple" />
+                                </span>
+                                Continue with Apple
+                            </div>
+                        </div>
+                        <div className={cx('wrapper-or')}>OR</div>
+                        <form 
+                            action="/auth/login" 
+                            method="POST" 
+                            id="form-login" 
+                            className={cx('form-user')}
+                            onSubmit={formik.handleSubmit}
+                        >
+                            <div className={cx('input-box')}>
+                                <input value={formik.values.email} type="text" name="email" onChange={formik.handleChange} required ref={inputRef} />
+                                <span>Email</span>
+                                {formik.errors.email && formik.touched.email && (
+                                    <p className={cx('formik-validate')} >{formik.errors.email}</p>
+                                )}
+                            </div>
+                            <div className={cx('input-box')}>
+                                <input value={formik.values.password} type="text" name="password" onChange={formik.handleChange} required />
+                                <span>Password</span>
+                                {formik.errors.password && formik.touched.password && (
+                                    <p className={cx('formik-validate')} >{formik.errors.password}</p>
+                                )}
+                            </div>
+                        </form>
+                        <div className={cx('wrapper-rules')}>
+                            { submit ? <div className={cx('container-button')}>
+                                <button type="submit" form="form-login">Continue</button>
+                            </div>
+                                :
+                            <div className={cx('container-rules')}>
+                                I agree to the
+                                <a href="#"> Terms & Conditions</a> &
+                                <a href="#"> Privacy Policy</a>
+                            </div>
+                            }
+                        </div>
                     </div>
-                </div>
-                <div className={cx('wrapper-or')}>OR</div>
-                <form action="#" className={cx('form-user')}>
-                    <div className={cx('input-box')}>
-                        <input value={button ?? ""} type="text" required ref={inputRef} onChange={(e) => setButton(e.target.value)} />
-                        <span>Email</span>
-                    </div>
-                    <div className={cx('input-box')}>
-                        <input type="text" required />
-                        <span>Password</span>
-                    </div>
-                </form>
-                <div className={cx('wrapper-rules')}>
-                    { submit ? <div className={cx('container-button')}>
-                        <button>Continue</button>
-                    </div>
-                        :
-                    <div className={cx('container-rules')}>
-                        I agree to the
-                        <a href="#"> Terms & Conditions</a> &
-                        <a href="#"> Privacy Policy</a>
-                    </div>
-                    }
                 </div>
             </div>
         </div>

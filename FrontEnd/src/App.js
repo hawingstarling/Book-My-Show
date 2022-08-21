@@ -2,9 +2,6 @@ import { Fragment } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { publicRoutes } from './routes'
 import { MainLayout } from './layout'
-import Login from './components/Login/Login'
-import User from './components/User/User'
-import Ticket from './components/Ticket/Ticket'
 
 function App() {
   return (
@@ -27,10 +24,6 @@ function App() {
             } 
           />
         })}
-        {/* <Seating />
-        <Login />
-        <User />
-        <Ticket /> */}
       </Routes>
     </div>
   );

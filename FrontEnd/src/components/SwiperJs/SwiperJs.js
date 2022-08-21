@@ -1,3 +1,5 @@
+import axios from 'axios'
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import 'swiper/css';
@@ -7,6 +9,16 @@ import './SwiperJs.css';
 import { spiderscard } from '../../assets/image'
 
 function SwiperJs() {
+   const [data, setData] = useState();
+
+   useEffect(() => {
+      axios.get('https://backendmoviebookingv001.herokuapp.com/movie/nowplaying')
+         .then((response) => {
+            setData(response.data.data)
+         })
+   }, []);
+
+   console.log(data);
 
     return ( 
        <Swiper
@@ -44,6 +56,8 @@ function SwiperJs() {
                   <div></div>
                </div>
             </SwiperSlide>
+            <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 1</h1></SwiperSlide>
+            <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 1</h1></SwiperSlide>
             <SwiperSlide><h1 style={{textAlign: 'center', color: 'white'}}>Slide 1</h1></SwiperSlide>
        </Swiper>
     );

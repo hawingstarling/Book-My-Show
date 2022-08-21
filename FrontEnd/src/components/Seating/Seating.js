@@ -110,6 +110,8 @@ const SEAT = {
     }
 }
 
+const TIME_BOOKING = ['10:00', '12:30', '15:00', '17:30', '22:30']
+
 var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 var days = ['SUN', 'MON', 'TUE', 'WEB', 'THU', 'FRI', 'SAT'];
 const monthNames = ["Ja", "Feb", "Mar", "Apr", "May", "Jun",
@@ -129,30 +131,17 @@ const data = SEAT.seatInfo
 
 function Seating() {
     const [seatSelected, setSeatSelected] = useState([]);
-    const [countDown, setCountDown] = useState(10);
+    const [date, setDate] = useState({});
     const [ticket, setTicket] = useState({});
 
     const THREE_MINUTES_IN_MS = 5 * 60 * 1000;  // 3 minutes
     const NOW_IN_MS = new Date().getTime(); // getTime from 1 January 1970 to now. 
     const dateTimeAfterThreeMinutes = NOW_IN_MS + THREE_MINUTES_IN_MS;
 
-
-    // useEffect(() => {
-    //     const timerId = setInterval(() => {
-    //         setCountDown(prevState => prevState - 1)
-    //     }, 1000)
-
-    //     if (countDown === 0) {
-    //         setSeatSelected([])
-    //         setCountDown(10)    // để làm xuất hiện alert
-    //     }
-
-    //     return () => {
-    //         clearInterval(timerId)
-    //     }
-    // }, [countDown]);
-
-    const handleSeatSelected = (seat) => {
+    const handleSeatSelected = (e, seat) => {
+        if (e.target.classList.contains(cx('seat')) && !e.target.classList.contains(cx('occupied'))) {
+            e.target.classList.toggle(cx('selected'))
+        }
         if (seatSelected.includes(seat))  {
             const index = seatSelected.indexOf(seat)
             seatSelected.splice(index, 1)
@@ -162,27 +151,55 @@ function Seating() {
 
                 console.log('seat useState: ', newSeat);
 
-                // setTicket(prevTicket => {
-                //     const newTicket = [...prevTicket, ticket]
-                    
-                //     console.log('ticket: ', newTicket);
-
-                //     return newTicket
-                // })
+                setTicket(prevTicket => {
+                    const newTicket = {...prevTicket, seatSelected: newSeat}
+                    return newTicket
+                })
 
                 return newSeat
             })
         }
     }
 
-    const handlePickDate = (day, date, month) => {
-        setTicket({
-            time: { day, date, month },
-            seatSelected
+    const handlePickDate = (e, day, date, month) => {
+        console.log('date:', e.target);
+        e.target.classList.toggle(cx('selected-date'))
+        setDate(prevDate => { 
+            const newDate =  { 
+                ...prevDate,
+                day,
+                date,
+                month 
+            }
+            setTicket(prevTicket => {
+                const newTicket =  {
+                    ...prevTicket,
+                    time: newDate,
+                    seatSelected
+                }
+                return newTicket
+            })
+
+            return newDate
         })
-        console.log('ticket: ', ticket);
 
     }
+
+    const handleTime = (e, time) =>{
+        console.log('time,', e.target);
+        e.target.classList.toggle(cx('selected-time'))
+        setTicket(prevTicket => {
+            const newTicket = {
+                ...prevTicket,
+                booking: time
+            }
+            return newTicket
+        })
+    }
+
+    useEffect(() => {
+        console.log('ticket: ', ticket);
+    })
 
     return (
         <>  
@@ -214,10 +231,10 @@ function Seating() {
                                 <div 
                                     className={cx('each-seat')} 
                                     key={index}
-                                    onClick={() => handlePickDate(days[date.date.getDay()], 
+                                    onClick={(e) => handlePickDate(e, days[date.date.getDay()], 
                                         date.date.getDate(), 
                                         monthNames[date.date.getMonth()])
-                                            }
+                                    }
                                 >
                                     <div>{ days[date.date.getDay()] }</div>
                                     <div className={cx('date-numeric')}>{ date.date.getDate() }</div>
@@ -229,21 +246,11 @@ function Seating() {
                             <CountdownTimer targetDate={dateTimeAfterThreeMinutes} />
                         </div>
                         <div className={cx('show-time')}>
-                            <div>
-                                <div className={cx('timer-seat')}>10:00</div>
-                            </div>
-                            <div>
-                                <div className={cx('timer-seat')}>12:30</div>
-                            </div>
-                            <div>
-                                <div className={cx('timer-seat')}>15:00</div>
-                            </div>
-                            <div>
-                                <div className={cx('timer-seat')}>17:30</div>
-                            </div>
-                            <div>
-                                <div className={cx('timer-seat')}>22:30</div>
-                            </div>
+                            { TIME_BOOKING.map((time, index) => (
+                                <div key={index} onClick={(e) => handleTime(e, time)}>
+                                    <div className={cx('timer-seat')}>{time}</div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div className={cx('container-seat')}>
@@ -255,18 +262,16 @@ function Seating() {
                                         key={`seat-${key}-${i + 1}`}
                                         className={cx('seat',
                                             `seat-${key}-${i + 1}`, data[key].aisleSeats.map((aisle) => (
-                                                aisle === (i + 1) ? 'seat-block' : '' ||
+                                                aisle === (i + 1) ? 'block' : '' ||
                                                 data[key].occupied.map((available) => (
-                                                available === (i + 1) ? 'seat-occupied' : ''
+                                                available === (i + 1) ? 'occupied' : ''
                                             ))
                                         )))}
-                                        onClick={() => handleSeatSelected(`${key}-${i + 1}`)}
+                                        onClick={(e) => handleSeatSelected(e, `${key}${i + 1}`)}
                                     >
                                         {i + 1}
                                     </div>
                                 )) }
-                    
-                                {/* {console.log(data[key].aisleSeats)} */}
                             </div>
                         )) }
                     

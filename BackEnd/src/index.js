@@ -4,10 +4,14 @@ const path = require('path')
 const dotenv = require('dotenv')
 const cors = require('cors')
 const morgan = require('morgan')
-const port = process.env.PORT || 5000
 const handlebars = require('express-handlebars');
 const db = require('./config/db.config')
 const route = require('./routes')
+const admin = require('./firebase/services')
+
+// Variable environment
+dotenv.config()
+const port = process.env.PORT || 5000
 
 // Config static file
 app.use(express.static(path.join(__dirname, 'public')))
@@ -29,12 +33,7 @@ app.engine('hbs', handlebars.engine({
   }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'))
-// app.get('/', (req, res, next) => {
-//     res.render('login');
-// });
 
-// Variable environment
-dotenv.config()
 // Connect mongoose
 db.connect()
 // Route

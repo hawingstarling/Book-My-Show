@@ -1,9 +1,12 @@
 import { screen, play } from '../../assets/icons'
 import { spider } from '../../assets/image'
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import CountdownTimer from '../../utils/CountdownTimer'
 import classNames from 'classnames/bind';
 import styles from './Seating.module.scss'
+import axios from 'axios'
+import { baseUrl } from '../../api/config'
 
 const cx = classNames.bind(styles)
 
@@ -134,10 +137,18 @@ function Seating() {
     const [date, setDate] = useState({});
     const [ticket, setTicket] = useState({});
 
+    const location = useLocation()
+    const movieInfo = location.state
+    console.log('data movie: ', movieInfo);
+
+    console.log('seat-info: ', SEAT.seatInfo);
+    
+    // NOTE: 3 minutes
     const THREE_MINUTES_IN_MS = 5 * 60 * 1000;  // 3 minutes
     const NOW_IN_MS = new Date().getTime(); // getTime from 1 January 1970 to now. 
     const dateTimeAfterThreeMinutes = NOW_IN_MS + THREE_MINUTES_IN_MS;
 
+    // NOTE: Pick seat
     const handleSeatSelected = (e, seat) => {
         if (e.target.classList.contains(cx('seat')) && !e.target.classList.contains(cx('occupied'))) {
             e.target.classList.toggle(cx('selected'))
@@ -161,15 +172,15 @@ function Seating() {
         }
     }
 
-    const handlePickDate = (e, day, date, month) => {
+    // NOTE: Pick date
+    const handlePickDate = (e, date) => {
+        console.log('date of days: ', date);
         console.log('date:', e.target);
         e.target.classList.toggle(cx('selected-date'))
         setDate(prevDate => { 
             const newDate =  { 
                 ...prevDate,
-                day,
-                date,
-                month 
+                date
             }
             setTicket(prevTicket => {
                 const newTicket =  {
@@ -185,16 +196,31 @@ function Seating() {
 
     }
 
+    // NOTE: Pick time
     const handleTime = (e, time) =>{
         console.log('time,', e.target);
         e.target.classList.toggle(cx('selected-time'))
         setTicket(prevTicket => {
             const newTicket = {
                 ...prevTicket,
-                booking: time
+                bookingTime: time
             }
             return newTicket
         })
+    }
+
+    const handleCheckout = async () => {
+        try {
+            const resp = await axios({
+                method: 'post',
+                url: baseUrl + '/addseat/' + movieInfo.id,
+                data: ticket
+            })
+            console.log(resp);
+        } catch (e) {
+            console.log(e);
+            alert("Your seat Has been choose by other");
+        }
     }
 
     useEffect(() => {
@@ -207,14 +233,14 @@ function Seating() {
                 <div className={cx('movie-seat')}>
                     <div className={cx('card-seat')}>
                         <div className={cx('image-movie')}>
-                            <img className={cx('card-movie')} src={spider} alt="spider panel" />
+                            <img className={cx('card-movie')} src={movieInfo?.background.w500} alt="spider panel" />
                             <div className={cx('container-play')}>
                                 <img className={cx('play-movie')} src={play} alt="play" />
                             </div>
                         </div>
                         <div className={cx('content-movie-seat')}>
                             <h5>Movie</h5>
-                            <p>SPIDER-MAN All Roads Lead To No Way Home</p>
+                            <p>{movieInfo.title}</p>
                             <h5>Direction</h5>
                             <p>Standard Lord</p>
                             <h5>Starring</h5>
@@ -227,13 +253,15 @@ function Seating() {
                 <div className={cx('main-seat')}>
                     <div className={cx('options-seat')}>
                         <div className={cx('date-seat')}>
-                            { DATE.map((date, index) => (
+                            {DATE.map((date, index) => (
                                 <div 
                                     className={cx('each-seat')} 
                                     key={index}
-                                    onClick={(e) => handlePickDate(e, days[date.date.getDay()], 
-                                        date.date.getDate(), 
-                                        monthNames[date.date.getMonth()])
+                                    onClick={(e) => handlePickDate(e, date.date.toLocaleString('en-US', { 
+                                            day: 'numeric', 
+                                            year: 'numeric', 
+                                            month: 'numeric',
+                                        }))
                                     }
                                 >
                                     <div>{ days[date.date.getDay()] }</div>
@@ -246,7 +274,7 @@ function Seating() {
                             <CountdownTimer targetDate={dateTimeAfterThreeMinutes} />
                         </div>
                         <div className={cx('show-time')}>
-                            { TIME_BOOKING.map((time, index) => (
+                            {TIME_BOOKING.map((time, index) => (
                                 <div key={index} onClick={(e) => handleTime(e, time)}>
                                     <div className={cx('timer-seat')}>{time}</div>
                                 </div>
@@ -310,7 +338,7 @@ function Seating() {
                                 <div>PRICE</div>
                                 <div className={cx('total-seat')}>$25,00</div>
                             </li>
-                            <li className={cx('checkout')}>
+                            <li className={cx('checkout')} onClick={() => handleCheckout()}>
                                 <div>CHECKOUT</div>
                             </li>
                         </ul>

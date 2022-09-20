@@ -1,6 +1,7 @@
 import { logo } from '../../../assets/image'
 import { useState } from 'react'
 import Login from '../../../components/Login/Login'
+import Dropdown from '../../../components/Dropdown/Dropdown';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Button from '../../../components/FormField/Button/Button';
@@ -13,9 +14,11 @@ const cx = classNames.bind(styles)
 
 function Navbar() {
     const [isLogin, setIsLogin] = useState(false);
+    const [isMenu, setIsMenu] = useState(false);
 
     return ( 
         <header>
+            { isMenu && <Dropdown setIsMenu={setIsMenu} />}
             { isLogin && <Login setIsLogin={setIsLogin} /> }
             <div className={cx('wrapper-header-one')}>
                 <nav className={cx('wrapper-navbar-top')}>
@@ -46,7 +49,10 @@ function Navbar() {
                                 Sign in
                             </Button>
                         </div>
-                        <div className={cx('bar-icon')}>
+                        <div 
+                            className={cx('bar-icon')}
+                            onClick={() => setIsMenu(true)}
+                        >
                             <img src={bar} alt="bar-icon" />
                         </div>
                     </div>

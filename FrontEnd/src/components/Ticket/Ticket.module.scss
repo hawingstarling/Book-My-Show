@@ -5,6 +5,7 @@
 }
 
 .wrapper-ticket {
+    width: 100vw;
     height: 100vh;
     display: grid;
     font-family: "Staatliches",cursive;
@@ -33,6 +34,20 @@
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 0.85;
+}
+
+@media only screen and (max-width: 600px) {
+    .ticket {
+        flex-direction: column;
+    }
+
+    .ticket-left {
+        flex-direction: column;
+    }
+
+    .image {
+        width: 100%;
+    }
 }
 
 .admit-one {

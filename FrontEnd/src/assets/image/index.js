@@ -7,5 +7,13 @@ import spider from './spider.png'
 import spiderscard from './spider-man-no-way-home.jpg'
 import obito from './obito.jpg'
 import qr from './qr.png'
+import rewardsLogin from './rewards_login.png'
+import helpAndSupport from './helpandsupport.png'
+import purchaseHistory from './purchasehistory.png'
+import streamLibrary from './streamlibrary.png'
+import rewards from './rewards.png'
+import accountAndSettings from './accountandsettings.png'
+import bookASmile from './bookasmile.png'
 
-export { qr, obito, logo, eventful, global, thrill, golden, spider, spiderscard }
+
+export { purchaseHistory, streamLibrary, rewards, accountAndSettings, bookASmile, qr, obito, logo, eventful, global, thrill, golden, spider, spiderscard, rewardsLogin, helpAndSupport }

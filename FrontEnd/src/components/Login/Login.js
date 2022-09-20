@@ -1,9 +1,8 @@
 import axios from 'axios'
-import { useFormik } from 'formik'
 import * as Yup from "yup";
+import { useFormik } from 'formik'
 import { useEffect, useState, useRef } from 'react'
-import { apple } from '../../assets/icons'
-import { close } from '../../assets/icons'
+import { apple, close } from '../../assets/icons'
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, OAuthProvider } from "firebase/auth";
 import { getFirestore, collection, addDoc, where, query, getDocs} from "firebase/firestore"
@@ -16,6 +15,7 @@ const cx = classNames.bind(styles)
 function Login({ setIsLogin }) {
     const [submit, setSubmit] = useState(true);
     // const [button, setButton] = useState();
+    const [token, setToken] = useState('');
     const [signIn, setSignIn] = useState([]);
     const inputRef = useRef()
 
@@ -54,6 +54,33 @@ function Login({ setIsLogin }) {
                 setSignIn(data)
             })
     }, []);
+
+    useEffect(() => {
+        auth.onAuthStateChanged((userCred) => {
+            if (userCred) {
+                userCred.getIdToken().then((token) => {
+                    setToken(token)
+                })
+            }
+        })
+        console.log('token: ', token);
+    }, []);
+
+    useEffect(() => {
+        if (token) {
+            fetchToken(token)
+        }
+    }, [token]);
+
+    const fetchToken = async (token) => {
+        const response = await axios.get('http://localhost:5500/api/token', {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+
+        console.log('res data: ', response.data);
+    }
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -114,7 +141,6 @@ function Login({ setIsLogin }) {
         }
     }
 
-
     return ( 
         <div className={cx('login')}>
             <div className={cx('wrapper')}>
@@ -158,7 +184,7 @@ function Login({ setIsLogin }) {
                                 )}
                             </div>
                             <div className={cx('input-box')}>
-                                <input value={formik.values.password} type="text" name="password" onChange={formik.handleChange} required />
+                                <input value={formik.values.password} type="password" name="password" onChange={formik.handleChange} required />
                                 <span>Password</span>
                                 {formik.errors.password && formik.touched.password && (
                                     <p className={cx('formik-validate')} >{formik.errors.password}</p>

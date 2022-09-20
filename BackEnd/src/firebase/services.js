@@ -2,14 +2,16 @@
 // import { GoogleAuthProvider, signInWithPopup, OAuthProvider } from "firebase/auth"
 // import { collection, addDoc, where, query, getDocs} from "firebase/firestore"
 
-// const admin = require("firebase-admin");
-// // import service account file (helps to know the firebase project details)
-// const serviceAccount = require('./serviceAccountKey.json')
-// // Intialize the firebase-admin project/account
-// admin.initializeApp({
-//     credential: admin.credential.cert(serviceAccount),
-//     databaseURL: 'http://book-my-show.firebaseio.com'
-// });
+const admin = require("firebase-admin");
+// import service account file (helps to know the firebase project details)
+const serviceAccount = require('./serviceAccountKey.json')
+// Intialize the firebase-admin project/account
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: 'http://book-my-show.firebaseio.com'
+});
+
+module.exports = admin
 
 // const ggProvider = new GoogleAuthProvider()
 // const oProvider = new OAuthProvider('apple.com')

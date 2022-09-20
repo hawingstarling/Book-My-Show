@@ -2,6 +2,7 @@ import searchInput from './search.svg'
 import bar from './bar.svg'
 import arrowLeft from './arrow-left.svg'
 import arrowRight from './arrow-right.svg'
+import rightArrow from './right-arrow.svg'
 import hut from './hut.svg'
 import callCenter from './callcenter.svg'
 import reSend from './resend.svg'
@@ -17,5 +18,7 @@ import play from './play.svg'
 import close from './close.svg'
 import apple from './apple.svg'
 import edit from './edit.svg'
+import notifications from './notifications.svg'
+import lock from './lock.svg'
 
-export { edit, apple, close, play, screen, searchInput, bar, arrowLeft, arrowRight, hut, callCenter, reSend, newsLetter, facebook, twitter, youtube, instagram, pinterest, linkedIn }
+export { lock, notifications, rightArrow, edit, apple, close, play, screen, searchInput, bar, arrowLeft, arrowRight, hut, callCenter, reSend, newsLetter, facebook, twitter, youtube, instagram, pinterest, linkedIn }

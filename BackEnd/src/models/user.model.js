@@ -4,7 +4,7 @@ const Role = require('./role.model')
 
 const User = new Schema({
     _idRole: Schema.Types.ObjectId,
-    username: { type: String, require: true, unique: true, minlength: 6, maxlength: 25},
+    username: { type: String, require: true, minlength: 6, maxlength: 25},
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true, minlength: 6 },
     roles: [

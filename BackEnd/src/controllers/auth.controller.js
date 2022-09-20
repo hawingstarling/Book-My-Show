@@ -15,6 +15,7 @@ class AuthController {
                 username: 'Userbook',
                 email: req.body.email,
                 password: hashed,
+                isAdmin: false,
                 // roles: 'admin'
             })
 
@@ -29,6 +30,7 @@ class AuthController {
     generateAT (user) {
         return jwt.sign({
             id: user._id,
+            // email: user.email
             // role: user.roles
         }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s'})
     }
@@ -36,6 +38,7 @@ class AuthController {
     generateRT (user) {
         return jwt.sign({
             id: user._id,
+            // email: user.email
             // role: user.roles
         }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1d'})
     }
@@ -57,8 +60,17 @@ class AuthController {
             }
 
             if (user && validPassword) {
-                const newAccessToken = AuthController.generateAT(user)
-                const newRefreshToken = AuthController.generateRT(user)
+                const newAccessToken = jwt.sign({
+                    id: user._id,
+                    // email: user.email
+                    // role: user.roles
+                }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s'})
+
+                const newRefreshToken = jwt.sign({
+                    id: user._id,
+                    // email: user.email
+                    // role: user.roles
+                }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1d'})
 
                 res.cookie('refreshToken', newRefreshToken, {
                     httpOnly: true,

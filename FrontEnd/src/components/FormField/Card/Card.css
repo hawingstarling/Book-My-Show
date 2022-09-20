@@ -38,6 +38,7 @@
 
 .swiper-card {
     background: none;
+    cursor: pointer;
 }
 
 .swiper-button-prev-card, .swiper-button-next-card {
@@ -53,15 +54,15 @@
     background-size: contain;
     background-position: center;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .swiper-button-prev-card {
     left: -20px;
 }
 
+
 .swiper-button-prev-card img, .swiper-button-next-card img {
-    width: 18px;
-    height: 18px;
     padding: 10px 10px;
     /* filter: invert(100%); chac la dao nguoc mau` */ 
 }
@@ -69,19 +70,6 @@
 .swiper-button-next-card {
     right: -20px;
 }
-
-
-/* .swiper-button-next-card {
-    background-image: url('./../../../assets/icons/arrow-right.svg');
-    width: 18px;
-    height: 18px;
-}
-
-.swiper-button-prev-card {
-    background-image: url('./../../../assets/icons/arrow-left.svg');
-} */
-
-
 
 .swiper-slide img {
     height: calc(333.583px);

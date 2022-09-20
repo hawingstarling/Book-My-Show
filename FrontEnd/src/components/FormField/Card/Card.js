@@ -1,6 +1,6 @@
+import axios from 'axios'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useEffect, useState } from 'react';
-import axios from 'axios'
 import { Navigation } from 'swiper';
 import { useRef } from 'react'
 import 'swiper/css';
@@ -8,26 +8,15 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './Card.css'
 import { arrowLeft, arrowRight } from './../../../assets/icons'
+import { Link, Switch, Route } from 'react-router-dom'
 
 function Card(props) {
     const {
         see = false,
         title,
-        subtitle
+        subtitle,
+        movies
     } = props
-
-    const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setLoading(true)
-        axios
-            .get('https://backendmoviebookingv001.herokuapp.com/movie/all')
-            .then(function (res) {
-                setMovies(res.data.data)
-            })
-            .catch((error) => console.log(error))
-    }, []);
 
     const swiperButtonPrev = useRef(null)
     const swiperButtonNext = useRef(null)
@@ -60,6 +49,26 @@ function Card(props) {
                     {...params}
                     spaceBetween={32}
                     slidesPerView={5}
+                    breakpoints={{
+                        // when window width is >= 320px
+                        0: {
+                            slidesPerView: 2,
+                            spaceBetween: 20
+                        },
+                        // when window width is >= 480px
+                        480: {
+                            slidesPerView: 3,
+                            spaceBetween: 30
+                        },
+                        // when window width is >= 640px
+                        640: {
+                            slidesPerView: 4,
+                            spaceBetween: 40
+                        },
+                        1200: {
+                            slidesPerView: 5,
+                        }
+                    }}
                     className="swiper-card"
                     onBeforeInit={(swiper) => {
                         swiper.params.navigation.prevEl = swiperButtonPrev.current;
@@ -67,36 +76,22 @@ function Card(props) {
                     }}
                     modules={[Navigation]}
                 >
-                    { loading && movies.map((movie) => (
-                        <SwiperSlide>
-                            <img src={movie?.poster_path?.w500} alt="movie" />
+                    {movies.map((movie) => (
+                        <SwiperSlide key={movie._id}>
+                            <Link 
+                                to={`/seat/${movie.id}`}
+                                state={movie}
+                            >
+                                <img src={movie?.poster_path?.w500} alt="movie" />
+                            </Link>
                         </SwiperSlide>
                     ))}
-
-                    {/* <SwiperSlide>
-                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:oi-discovery-catalog@@icons@@premiere-icon.png,ox-322,oy-20:q-80/et00327883-dkjdurjkaa-portrait.jpg" alt="poster" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:oi-discovery-catalog@@icons@@premiere-icon.png,ox-322,oy-20:q-80/et00327883-dkjdurjkaa-portrait.jpg" alt="poster" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:oi-discovery-catalog@@icons@@premiere-icon.png,ox-322,oy-20:q-80/et00327883-dkjdurjkaa-portrait.jpg" alt="poster" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:oi-discovery-catalog@@icons@@premiere-icon.png,ox-322,oy-20:q-80/et00327883-dkjdurjkaa-portrait.jpg" alt="poster" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:oi-discovery-catalog@@icons@@premiere-icon.png,ox-322,oy-20:q-80/et00327883-dkjdurjkaa-portrait.jpg" alt="poster" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:oi-discovery-catalog@@icons@@premiere-icon.png,ox-322,oy-20:q-80/et00327883-dkjdurjkaa-portrait.jpg" alt="poster" />
-                    </SwiperSlide> */}
                 </Swiper>
                 <div className='swiper-button-prev-card' ref={swiperButtonPrev} >
-                    <img src={arrowLeft} alt="" />
+                    <img src={arrowLeft} alt="arrow left" />
                 </div>
                 <div className='swiper-button-next-card' ref={swiperButtonNext} >
-                    <img src={arrowRight} alt="" />
+                    <img src={arrowRight} alt="arrow right" />
                 </div>
             </div>
         </>

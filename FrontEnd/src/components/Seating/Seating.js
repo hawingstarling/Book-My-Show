@@ -330,7 +330,7 @@ function Seating() {
                             </li>
                             <li>
                                 <div>TICKETS</div>
-                                <div>3 tickets, Seats: A5, B7, G8</div>
+                                <div>3 tickets</div>
                             </li>
                         </ul>
                         <ul className={cx('ul-right')}>

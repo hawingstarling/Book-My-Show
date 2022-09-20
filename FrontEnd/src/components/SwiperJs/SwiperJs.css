@@ -71,6 +71,24 @@
     padding: 20px 0;
 }
 
+@media (max-width: 820px) {
+    .wrapper-swiper-slide {
+        padding: 20px;
+    }
+
+    .content-name-movie h1 {
+        word-wrap: break-word;
+    }
+
+    .language-movie {
+        flex-direction: column;
+    }
+
+    .language-movie .language, .language-movie .dot {
+        opacity: 0;
+    }
+}
+
 .content-name-movie {
     padding-left: 32px;
     max-width: 520px;

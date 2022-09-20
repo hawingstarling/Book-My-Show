@@ -42,10 +42,10 @@ const SlideMovieItem = () => {
             <h1>Spider-Man: No Way Home</h1>
             <div className="introduce-content-movie">
                <div className="language-movie">
-                  <div>
+                  <div className="language">
                      <a href="https://in.bookmyshow.com/explore/stream-movies-english">English</a>
                   </div>
-                  <span>•</span>
+                  <span className="dot">•</span>
                   <div className="language-movie-two">
                      <a>Languages:</a>
                      <span>Audio(4), Subtitles(1)</span>

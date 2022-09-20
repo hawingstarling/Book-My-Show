@@ -4,6 +4,16 @@
     height: 64px;
 }
 
+@media (max-width: 820px) {
+    .wrapper-header-one {
+        padding: 0 10px;
+    }
+
+    .wrapper-header-two {
+        padding: 0 10px;
+    }
+}
+
 .wrapper-navbar-top {
     display: flex;
     justify-content: space-between;

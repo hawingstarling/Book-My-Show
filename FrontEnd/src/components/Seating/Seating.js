@@ -144,7 +144,7 @@ function Seating() {
     console.log('seat-info: ', SEAT.seatInfo);
     
     // NOTE: 3 minutes
-    const THREE_MINUTES_IN_MS = 5 * 60 * 1000;  // 3 minutes
+    const THREE_MINUTES_IN_MS = 3 * 60 * 1000;  // 3 minutes
     const NOW_IN_MS = new Date().getTime(); // getTime from 1 January 1970 to now. 
     const dateTimeAfterThreeMinutes = NOW_IN_MS + THREE_MINUTES_IN_MS;
 

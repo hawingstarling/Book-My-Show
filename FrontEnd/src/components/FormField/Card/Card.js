@@ -53,17 +53,24 @@ function Card(props) {
                         // when window width is >= 320px
                         0: {
                             slidesPerView: 1,
-                            spaceBetween: 20
+                        },
+                        390: {
+                            slidesPerView: 1,
                         },
                         // when window width is >= 480px
                         480: {
                             slidesPerView: 2,
-                            spaceBetween: 30
+                            spaceBetween: 10
                         },
                         // when window width is >= 640px
                         640: {
                             slidesPerView: 3,
-                            spaceBetween: 40
+                            spaceBetween: 10
+                        },
+
+                        820: {
+                            slidesPerView: 3,
+                            spaceBetween: 10,
                         },
                         1200: {
                             slidesPerView: 5,

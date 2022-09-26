@@ -14,6 +14,8 @@ import streamLibrary from './streamlibrary.png'
 import rewards from './rewards.png'
 import accountAndSettings from './accountandsettings.png'
 import bookASmile from './bookasmile.png'
+import streamLogo from './stream-logo.png'
+import videoPlayerIcon from './video-player-icon.png'
+import searchIcon from './search-icon.png'
 
-
-export { purchaseHistory, streamLibrary, rewards, accountAndSettings, bookASmile, qr, obito, logo, eventful, global, thrill, golden, spider, spiderscard, rewardsLogin, helpAndSupport }
+export { videoPlayerIcon, searchIcon, streamLogo, purchaseHistory, streamLibrary, rewards, accountAndSettings, bookASmile, qr, obito, logo, eventful, global, thrill, golden, spider, spiderscard, rewardsLogin, helpAndSupport }
